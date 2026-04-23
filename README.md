@@ -30,7 +30,7 @@
 {
   "sample_id": "doc_0001",
   "user_query": "이 문서에서 계약 금액과 계약일을 추출해라.",
-  "artifacts": {"document_path": "documents/contracts/contract_001.pdf"},
+  "artifacts": {"document_path": "documents/contracts/contract_001.pdf", "document_content": "계약금액: ₩120,000,000\n계약일: 2026-03-12\n..."},
   "gold": {
     "fields": {"contract_amount": "₩120,000,000", "contract_date": "2026-03-12"}
   }
@@ -43,13 +43,15 @@
 {
   "sample_id": "doc_0002",
   "user_query": "이 재무 문서에서 표를 파싱하고 총자산 항목을 찾아라.",
-  "artifacts": {"document_path": "documents/finance/balance_sheet_01.png"},
+  "artifacts": {"document_path": "documents/finance/balance_sheet_01.png", "document_content": "항목 | 금액\n---|---\n총자산 | 1,240,000,000\n..."},
   "gold": {
     "fields": {"총자산": "1,240,000,000"},
     "table_headers": ["항목", "금액"]
   }
 }
 ```
+
+> **참고**: document_content가 제공되면 프롬프트에 문서 텍스트를 직접 포함
 
 ## 프로젝트 구조
 
