@@ -1,0 +1,61 @@
+{
+  "project_name": "DocAI-OCR pilot",
+  "project_root": "../..",
+  "data": {
+    "train_path": "../../data/sft/train.jsonl",
+    "eval_path": "../../data/sft/val.jsonl",
+    "document_path_regex": "문서:\\n([^\\n]+)",
+    "question_regex": "질문:\\n([\\s\\S]+)$",
+    "max_pages": 3,
+    "pdf_dpi": 144
+  },
+  "validation": {
+    "placeholder_patterns": []
+  },
+  "model": {
+    "model_name": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "max_seq_length": 16384,
+    "load_in_4bit": true,
+    "load_in_8bit": false,
+    "load_in_16bit": false,
+    "full_finetuning": false
+  },
+  "lora": {
+    "finetune_vision_layers": false,
+    "finetune_language_layers": true,
+    "finetune_attention_modules": true,
+    "finetune_mlp_modules": true,
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0,
+    "bias": "none",
+    "random_state": 3407,
+    "use_gradient_checkpointing": "unsloth",
+    "use_rslora": false,
+    "loftq_config": null,
+    "target_modules": "all-linear",
+    "modules_to_save": [
+      "lm_head",
+      "embed_tokens"
+    ]
+  },
+  "masking": {
+    "enabled": false,
+    "force_match": true
+  },
+  "training": {
+    "output_dir": "../../artifacts/unsloth/qwen2_5_vl_7b_qlora_pilot",
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "warmup_steps": 5,
+    "num_train_epochs": 1,
+    "max_steps": -1,
+    "learning_rate": 0.0001,
+    "logging_steps": 1,
+    "optim": "adamw_8bit",
+    "weight_decay": 0.01,
+    "lr_scheduler_type": "linear",
+    "seed": 3407,
+    "report_to": "none"
+  }
+}
